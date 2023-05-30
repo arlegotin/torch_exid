@@ -1,5 +1,5 @@
 # Extended Iterable Dataset for PyTorch
-An extension of PyTorch's [IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset), this package introduces functionalities for shuffling, limiting, and offsetting data.
+An extension of PyTorch [IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset), this package introduces functionalities for shuffling, limiting, and offsetting data.
 
 ## Installation
 
