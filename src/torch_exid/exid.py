@@ -3,8 +3,6 @@ from random import Random, randint
 from typing import Any, Iterator, List, Callable, Optional
 from torch.utils.data import IterableDataset
 
-__version__ = "0.1.0"
-
 
 class ExtendedIterableDataset(IterableDataset):
     """

@@ -5,12 +5,12 @@ An extension of PyTorch [IterableDataset](https://pytorch.org/docs/stable/data.h
 
 Directly from [PyPI](https://pypi.org/project/torch_exid/):
 ```bash
-pip install torch_exid
+pip install torch-exid
 ```
 
 Or using [Poetry](https://python-poetry.org/):
 ```bash
-poetry add torch_exid
+poetry add torch-exid
 ```
 
 ## Usage
