@@ -1,5 +1,4 @@
-from __future__ import annotations
-from random import Random, randint
+from random import Random
 from typing import Any, Iterator, List, Callable, Optional
 from torch.utils.data import IterableDataset
 
@@ -190,6 +189,10 @@ class ExtendedIterableDataset(IterableDataset):
         else:
             for x in self.generator_with_conditions():
                 yield x
+
+        # Reset the counter and the buffer
+        self.counter = 0
+        self.buffer = []
 
     def __iter__(self) -> Iterator[Any]:
         """

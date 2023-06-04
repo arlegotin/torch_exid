@@ -31,6 +31,8 @@ class PrimesDataset(ExtendedIterableDataset):
 def test_primes():
     ds = PrimesDataset(limit=10)
     assert list(ds) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    assert list(ds) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
     ds = PrimesDataset(limit=10, offset=3)
+    assert list(ds) == [7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
     assert list(ds) == [7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
