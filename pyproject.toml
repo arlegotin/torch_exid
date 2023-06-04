@@ -4,6 +4,7 @@ version = "0.1.4"
 description = "An extension of PyTorch IterableDataset, this package introduces functionalities for shuffling, limiting, and offsetting data."
 authors = ["Artem Legotin <hello@artemlegotin.com>"]
 readme = "README.md"
+homepage = "https://github.com/arlegotin/torch_exid"
 
 [project]
 requires-python = ">=3.8"
