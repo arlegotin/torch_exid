@@ -53,17 +53,24 @@ class ExtendedIterableDataset(IterableDataset):
                 f"ExtendedIterableDataset requires transforms in order to avoid bugs. Please read the comment above"
             )
 
-        self.shuffle_buffer = shuffle_buffer
-        self.shuffle_seed = (
+        self.shuffle_buffer: int = shuffle_buffer
+        self.shuffle_seed: int = (
             shuffle_seed if shuffle_seed is not None else Random().randint(0, 999331)
         )
-        self.buffer = []
+        self.buffer: List[Any] = []
 
-        self.offset = offset
-        self.limit = limit
-        self.counter = 0
+        self.offset: int = offset
+        self.limit: int = limit
+        self.counter: int = 0
 
-        self.transforms = transforms if transforms is not None else []
+        self._skip_next: bool = False
+
+        self.transforms: List[Callable[[Any], Any]] = (
+            transforms if transforms is not None else []
+        )
+
+    def skip_next(self):
+        self._skip_next = True
 
     def generator(self) -> Iterator[Any]:
         """
@@ -152,14 +159,18 @@ class ExtendedIterableDataset(IterableDataset):
                     raise StopIteration
 
                 x = next(gen)
+                x = self.transform_x(x)
 
-                if self.counter < self.offset:
-                    self.counter += 1
+                if self._skip_next:
+                    self._skip_next = False
                     continue
 
-                yield self.transform_x(x)
-
                 self.counter += 1
+
+                if self.counter - 1 < self.offset:
+                    continue
+
+                yield x
 
             except StopIteration:
                 break
@@ -193,6 +204,7 @@ class ExtendedIterableDataset(IterableDataset):
         # Reset the counter and the buffer
         self.counter = 0
         self.buffer = []
+        self._skip_next = False
 
     def __iter__(self) -> Iterator[Any]:
         """

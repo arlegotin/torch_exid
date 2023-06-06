@@ -9,10 +9,12 @@ class IntegersDataset(ExtendedIterableDataset):
             yield n
             n += 1
 
+
 """
 We're asserting dataset content twice
 to make sure that it was properly reset after first call.
 """
+
 
 def test_limit():
     ds = IntegersDataset(limit=3)

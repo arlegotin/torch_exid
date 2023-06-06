@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "torch_exid"
-version = "0.1.4"
+version = "0.1.5"
 description = "An extension of PyTorch IterableDataset, this package introduces functionalities for shuffling, limiting, and offsetting data."
 authors = ["Artem Legotin <hello@artemlegotin.com>"]
 readme = "README.md"

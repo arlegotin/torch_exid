@@ -94,6 +94,30 @@ for n in ds:
 
 In addition to the above, any arguments or keyword arguments for the [IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset) superclass can also be passed.
 
+## Methods
+
+### skip_next: Callable[[None], None]
+This method allows the skipping of the next item that would be yielded by the `generator`. Using `skip_next` will not affect the `limit` or `offset`.
+```python
+class EvensDataset(ExtendedIterableDataset):
+    def generator(self) -> Iterator[int]:
+        n = 0
+        while True:
+            if n % 2 != 0:
+                self.skip_next()
+
+            yield n
+            n += 1
+
+ds = EvensDataset(limit=5)
+
+# Will print out "0, 2, 4, 6, 8"
+for n in ds:
+    print(n)
+```
+
+In other words, it allows you to bypass the next item without modifying the overall iteration parameters.
+
 ## Contributing
 Contributions are greatly appreciated! Improvement can be made by submitting issues, proposing new features, or submitting pull requests with bug fixes or new functionalities.
 
